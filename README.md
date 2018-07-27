@@ -50,7 +50,7 @@ Just change nsis to portable.
 Building the packages
 ```
 $ npm run dist:win32
-$ npm run dist win:64
+$ npm run dist:win64
 ```
 
 ### Linux
@@ -64,3 +64,11 @@ A typical DMG package file will be build.
 ```
 $ npm run dist:mac
 ```
+
+## Setting up on a VPS
+Basically the same like for the Development environment, but you need to set two process enrionment variables:
+
+1. port (set this to your liking)
+2. autostart (set this to true or 1, so that the proxy will start automatically)
+
+Make sure you open the specific port in your firewall. This isnt ideal, because the UI, chromium, electron and the frontend will be loaded regardless. It's the best we can get without splitting off electron though.

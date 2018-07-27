@@ -804,6 +804,20 @@ module.exports = {
       21814: 'Jeanne',
       21815: 'Leona',
 
+      219: 'Chakram Dancer',
+      21911: 'Talia',
+      21912: 'Shaina',
+      21913: 'Melissa',
+      21914: 'Deva',
+      21915: 'Belita',
+
+      220: 'Boomerang Warrior',
+      22011: 'Sabrina',
+      22012: 'Maruna',
+      22013: 'Zenobia',
+      22014: 'Bailey',
+      22015: 'Martina',
+
       15105: 'Devilmon',
       14314: 'Rainbowmon',
 
@@ -851,7 +865,8 @@ module.exports = {
       20: 'Determination',
       21: 'Enhance',
       22: 'Accuracy',
-      23: 'Tolerance'
+      23: 'Tolerance',
+      99: 'Immemorial'
     },
     class: {
       0: 'Common',
@@ -986,11 +1001,11 @@ module.exports = {
   grindstone: {
     1: {
       range: {
-        0: { min: 80, max: 120 },
-        1: { min: 100, max: 200 },
-        2: { min: 180, max: 250 },
-        3: { min: 230, max: 450 },
-        4: { min: 430, max: 550 }
+        1: { min: 80, max: 120 },
+        2: { min: 100, max: 200 },
+        3: { min: 180, max: 250 },
+        4: { min: 230, max: 450 },
+        5: { min: 430, max: 550 }
       }
     },
     2: {
@@ -1161,8 +1176,8 @@ module.exports = {
     10: {
       range: {
         1: { min: 1, max: 3 },
-        2: { min: 2, max: 4 },
-        3: { min: 3, max: 6 },
+        2: { min: 3, max: 5 },
+        3: { min: 4, max: 6 },
         4: { min: 5, max: 8 },
         5: { min: 7, max: 10 }
       }
