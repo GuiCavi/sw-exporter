@@ -4,6 +4,9 @@ const httpProxy = require('http-proxy');
 const os = require('os');
 const net = require('net');
 const url = require('url');
+const path = require('path');
+const csv = require('fast-csv');
+const dateFormat = require('dateformat');
 
 const { decrypt_request, decrypt_response } = require('./smon_decryptor');
 
@@ -13,6 +16,8 @@ class SWProxy extends EventEmitter {
     this.httpServer = null;
     this.proxy = null;
     this.logEntries = [];
+    this.rtLogEntries = [];
+    this.files = [];
     this.addresses = [];
   }
   start(port) {
@@ -167,6 +172,53 @@ class SWProxy extends EventEmitter {
 
   getLogEntries() {
     return this.logEntries;
+  }
+
+  rtLog(entry) {
+    if (!entry) { return; }
+
+    entry.date = dateFormat(new Date(), 'yyyy-mm-dd HH:MM');
+    this.rtLogEntries = [...this.rtLogEntries, entry];
+
+    win.webContents.send('logrun', this.rtLogEntries);
+  }
+
+  getRtLogEntries() {
+    return this.rtLogEntries;
+  }
+
+  filesToRead(entry) {
+    this.files = [...entry.content, ...this.files];
+
+    win.webContents.send('files', this.files);
+  }
+
+  getFiles() {
+    return this.files;
+  }
+
+  readFile(fileName) {
+    this.clearRealtimeData();
+    const headers = ['date', 'dungeon', 'result', 'time', 'mana', 'crystal', 'energy', 'drop', 'grade', 'sell_value', 'set', 'efficiency', 'slot', 'rarity', 'main_stat', 'prefix_stat', 'sub1', 'sub2', 'sub3', 'sub4', 'team1', 'team2', 'team3', 'team4', 'team5'];
+
+    return new Promise((res, rej) => {
+      let csvData = [];
+      csv
+        .fromPath(path.join(config.Config.App.filesPath, fileName), { ignoreEmpty: true, headers, renameHeaders: true })
+        .on('data', (data) => {
+          csvData.push(data);
+        })
+        .on('end', () => {
+          this.rtLogEntries = csvData;
+          console.log('SWProxy', this.rtLogEntries.length, this.rtLogEntries[0]);
+          res(csvData);
+        });
+    });
+  }
+
+  clearRealtimeData() {
+    this.rtLogEntries = [];
+    win.webContents.send('logrun', this.rtLogEntries);
   }
 
   clearLogs() {

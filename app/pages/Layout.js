@@ -53,6 +53,10 @@ class Layout extends React.Component {
               <Icon name="home" />
               Logs
             </Menu.Item>
+            <Menu.Item name="realtime" link active={this.state.activeItem === 'realtime'} data-path="realtime" onClick={this.navigateFromElement.bind(this)}>
+              <Icon name="dashboard" />
+              Real time
+            </Menu.Item>
             <Menu.Item name="settings" link active={this.state.activeItem === 'settings'} data-path="settings" onClick={this.navigateFromElement.bind(this)}>
               <Icon name="settings" />
               Settings

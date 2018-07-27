@@ -73,6 +73,20 @@ ipcMain.on('logGetEntries', (event) => {
   event.returnValue = proxy.getLogEntries();
 });
 
+ipcMain.on('rtLogGetEntries', (event) => {
+  event.returnValue = proxy.getRtLogEntries();
+});
+
+ipcMain.on('getFiles', (event) => {
+  event.returnValue = proxy.getFiles();
+});
+
+ipcMain.on('readFile', async (event, { fileName }) => {
+  const fileData = await proxy.readFile(fileName);
+
+  event.sender.send('readFile', fileData);
+});
+
 ipcMain.on('updateConfig', () => {
   storage.set('Config', config.Config, (error) => {
     if (error) throw error;

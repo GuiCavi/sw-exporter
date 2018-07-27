@@ -60,13 +60,15 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
+    "fs-extra": "^4.0.3",
+    "moment": "^2.20.1",
+    "prettier-eslint": "^8.8.1",
     "webpack": "^3.5.6"
   },
   "dependencies": {
     "dateformat": "^2.0.0",
     "electron-json-storage": "^3.1.0",
     "fast-csv": "^2.4.0",
-    "fs-extra": "^4.0.1",
     "http-proxy": "^1.16.2",
     "lodash": "^4.17.4",
     "mousetrap": "^1.6.1",
@@ -75,6 +77,6 @@
     "react-router": "^3.0.2",
     "request": "^2.81.0",
     "sanitize-filename": "^1.6.1",
-    "semantic-ui-react": "^0.71.5"
+    "semantic-ui-react": "^0.81.3"
   }
 }
